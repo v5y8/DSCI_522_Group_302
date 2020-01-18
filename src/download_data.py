@@ -46,7 +46,7 @@ def main(url, file_path):
     horse_info, results, comments, track_work, barrier = download_files(url)
     complete_dataset = merge_results(horse_info, results, comments, track_work, barrier)
     split_and_write_data(complete_dataset, file_path)
-    print(f"successfully written data to {file_path}")
+    print(f"successfully written data to {file_path}!\n")
 
 
 def download_files(url):
@@ -70,7 +70,7 @@ def download_files(url):
     # the comments had a bunch of letter codes saying the horses weren't able to place for some reason; weed out here.
     list_of_invalid_entries = ['1 DH', '2 DH', '3 DH', '4 DH', '5 DH', '6 DH', 'WV',
                                '7 DH', '8 DH', 'PU', '9 DH', 'UR', 'WV-A', 'FE', 'DNF', 'WX', 'TNP', 'WX-A', 'DISQ']
-    print("==========\nstarting download")
+    print("==========\nstarting download...\n")
     horse_info = pd.read_csv(f"{url}/horse_info.csv",
                              index_col=0)
     results = pd.read_csv(f"{url}/results.csv",
@@ -85,7 +85,7 @@ def download_files(url):
                              index_col=0)
     barrier = pd.read_csv(f"{url}/barrier.csv",
                           index_col=0)
-    print("==========\nsuccessfully downloaded CSV data")
+    print("==========\nsuccessfully downloaded CSV data!\n")
     return horse_info, results, comments, track_work, barrier
 
 
@@ -110,7 +110,7 @@ def merge_results(horse_info, results, comments, track_work, barrier):
         a Pandas dataframe containing all of the input dataframes.
 
     """
-    print("==========\nstarting merge")
+    print("==========\nstarting merge...\n")
 
     horse_info_results = pd.merge(results, horse_info, how="left", on=["horse"])
     barrier_results = pd.merge(barrier, horse_info_results,
@@ -129,7 +129,7 @@ def merge_results(horse_info, results, comments, track_work, barrier):
     final_data = pd.merge(results_with_comments, track_work,
                           how="left", on=["horse", "horse_code"])
 
-    print("==========\ncompleted merge")
+    print("==========\ncompleted merge!\n")
     return final_data
 
 
@@ -147,13 +147,13 @@ def split_and_write_data(final_data, filepath):
     -------
         None
     """
-    print("==========\nstarting to split data into test and train sets.")
+    print("==========\nstarting to split data into test and train sets\n")
     # shuffle and split the data.
     data_train, data_test = train_test_split(final_data,
                                              random_state=1,
                                              test_size=0.2,
                                              shuffle=True)
-
+	print("==========\ndata is split, writing to file\n")
     data_train.to_csv(f"{filepath}/data_train.csv")
     data_test.to_csv(f"{filepath}/data_test.csv")
 
