@@ -23,6 +23,7 @@ from sklearn.model_selection import train_test_split
 
 opt = docopt(__doc__)
 
+
 def main(url, file_path):
     """
     entry point for script. take in url_path and file_path from commandline,
@@ -44,7 +45,8 @@ def main(url, file_path):
         None if executed successfully, otherwise raises Exception.
     """
     horse_info, results, comments, track_work, barrier = download_files(url)
-    complete_dataset = merge_results(horse_info, results, comments, track_work, barrier)
+    complete_dataset = merge_results(
+        horse_info, results, comments, track_work, barrier)
     split_and_write_data(complete_dataset, file_path)
     print(f"successfully written data to {file_path}!\n")
 
@@ -111,24 +113,27 @@ def merge_results(horse_info, results, comments, track_work, barrier):
 
     """
     print("==========\nstarting merge...\n")
-    
-   #Merging fixing
 
-    results_comments = pd.merge(results, comments, how="left", on=["horseno", "date", "raceno", "plc"])
+   # Merging fixing
 
-#Rename barrier time which is the same as finish time in results
+    results_comments = pd.merge(results, comments, how="left", on=[
+                                "horseno", "date", "raceno", "plc"])
+
+    # Rename barrier time which is the same as finish time in results
     barrier.rename(columns={'time': 'finishtime'})
     barrier_binded = pd.concat([results_comments, barrier], sort=False)
-    
-    merged_data= pd.merge(barrier_binded, horse_info, how='left', on= ['horse'])
 
-#Removed the columns with _ch as this indicated Chinese.
-    final_data = merged_data[merged_data.columns[~merged_data.columns.str.contains('.*_ch')]]
+    merged_data = pd.merge(barrier_binded, horse_info,
+                           how='left', on=['horse'])
 
-#Drop repeated columns and unnessary indexes
+# Removed the columns with _ch as this indicated Chinese.
+    final_data = merged_data[merged_data.columns[~merged_data.columns.str.contains(
+        '.*_ch')]]
+
+    # Drop repeated columns and unnessary indexes
    # final_data =final_data.drop(['trainer_y','Unnamed: 0_x' ,'Unnamed: 0_y'], axis=1)
    # final_data['date']= pd.to_datetime(final_data['date'])
-    final_data
+#     final_data
 
 
 #     horse_info_results = pd.merge(results, horse_info, how="left", on=["horse"])
@@ -149,7 +154,7 @@ def merge_results(horse_info, results, comments, track_work, barrier):
 #                          how="left", on=["horse", "horse_code", #"date"])
 
     print("==========\ncompleted merge!\n")
-    
+
     return final_data
 
 
@@ -177,6 +182,6 @@ def split_and_write_data(final_data, filepath):
     data_train.to_csv(f"{filepath}/data_train.csv")
     data_test.to_csv(f"{filepath}/data_test.csv")
 
-
+# script entry point
 if __name__ == '__main__':
     main(opt["<url>"], opt["<file_path>"])
