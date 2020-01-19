@@ -34,6 +34,21 @@ To communicate our final results, we will create tables and plots displaying our
 
 ### EDA discussion
 
+The kaggle horse racing data set used for this project contains five sub sets (.csv files): 'results', 'barrier', 'comments', 'horse_info', and 'trackwork'. Results contains horse racing placement information from official races. Comments contains text on the performance of each horse during official races, and horse_info contains specifications for the horses participating in races.
+
+The barrier data set includes practice runs completed by horses. Since this information is useful in predicting future track performance it was included along with results as race observations. The results race data contains all the same features as the barrier set; however the barrier practice runs are missing ~20% of the features that are in results such as "actualwt", "class", and "handicap". In order to be able study if practice runs are biased, these practice runs are labelled in the final data set so that observations are known to be either an official race or practice.
+
+Trackwork contains warmup and exercise routines for horses throughout the time period of the data set (2015-2017). This data set was tentatively omitted because it is difficult to incorpoate into the master data set. The set contains 648,000 rows.
+
+Merging the above mentioned tables together, an EDA was performed on the compiled "final" data set:
+
+https://github.com/UBC-MDS/DSCI_522_Group_302/blob/master/src/EDA.ipynb
+
+Some major notes from the EDA are as follows:
+- Training and test data sets are 18744 and 4687 observations respectively
+- There are 36 features: 12 numeric, and 23 categorical
+- The training data set contains 1962 horses
+- At first review, some features appear correlated to placement such as: class, declarewt, and country. 
 
 ### Displaying Results of Analysis
 To visualize the differences between our (one or more depending on performance) models' predicted output of placement versus their actual placements in the test data, We could plot a scatter plot, with Predicted placement being the X axis and Actual placement being the Y axis, much like excercise 4 in lab 4 of Supervised Learning I.
@@ -43,19 +58,19 @@ If applicable, We could also plot a best-fit line via linear regression with res
 ![screenshot of residual plot](https://github.com/v5y8/DSCI_522_Group_302/raw/master/data/hypothetical_residual_plot.png)
 
 Finally, we can generate a table of our best/worst x number of predictions, and present them in a table.
-Horse name|predicted placement | actual placement |difference |
------------|------------|------------|---------------------|
-Horse 1|1|1|0|
-Horse 2|1|1|0|
-Horse 3|1|1|0|
-Horse 4|1|1|0|
+|Horse name|predicted placement | actual placement |difference |
+|-----------|------------|------------|---------------------|
+|Horse 1|1|1|0|
+|Horse 2|1|1|0|
+|Horse 3|1|1|0|
+|Horse 4|1|1|0|
 ...
-Horse name|predicted placement | actual placement |difference |
------------|------------|------------|---------------------|
-Horse 10|1|10|9|
-Horse 11|1|11|10|
-Horse 12|1|12|11|
-Horse 13|1|13|12|
+|Horse name|predicted placement | actual placement |difference |
+|-----------|------------|------------|---------------------|
+|Horse 10|1|10|9|
+|Horse 11|1|11|10|
+|Horse 12|1|12|11|
+|Horse 13|1|13|12|
 
 ### Contributions
 We welcome all contributions to this project! If you notice a bug, or have a feature request, please open up an issue [here](https://github.com/UBC-MDS/DSCI_522_Group_302/issues/new). If you'd like to contribute a feature or bug fix, you can fork our repo and submit a pull request. We will review pull requests within 7 days. All contributors must abide by our [code of conduct](https://github.com/v5y8/DSCI_522_Group_302/blob/master/CODE_OF_CONDUCT.md).
