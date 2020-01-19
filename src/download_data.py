@@ -111,25 +111,45 @@ def merge_results(horse_info, results, comments, track_work, barrier):
 
     """
     print("==========\nstarting merge...\n")
+    
+   #Merging fixing
 
-    horse_info_results = pd.merge(results, horse_info, how="left", on=["horse"])
-    barrier_results = pd.merge(barrier, horse_info_results,
-                               how="left",
-                               on=["horse", "date", "jockey", "venue", "runningpos", "course"])
-    barrier_horse_info_results = pd.merge(
-        barrier_results, horse_info, how="left", on=["horse"])
-    results_with_comments = pd.merge(
-        barrier_horse_info_results, comments, how="left", left_on=["date", "raceno_x", "plc_x", "horseno"],
-        right_on=["date", "raceno", "plc", "horseno"])
+    results_comments = pd.merge(results, comments, how="left", on=["horseno", "date", "raceno", "plc"])
 
-    # separate horse column into its name and its code
-    results_with_comments[["horse", "horse_code"]] = results_with_comments.pop(
-        'horse').str.split('(.*)\((\S*)\)', expand=True).drop(columns=[0, 3])
+#Rename barrier time which is the same as finish time in results
+    barrier.rename(columns={'time': 'finishtime'})
+    barrier_binded = pd.concat([results_comments, barrier], sort=False)
+    
+    merged_data= pd.merge(barrier_binded, horse_info, how='left', on= ['horse'])
 
-    final_data = pd.merge(results_with_comments, track_work,
-                          how="left", on=["horse", "horse_code"])
+#Removed the columns with _ch as this indicated Chinese.
+    final_data = merged_data[merged_data.columns[~merged_data.columns.str.contains('.*_ch')]]
+
+#Drop repeated columns and unnessary indexes
+   # final_data =final_data.drop(['trainer_y','Unnamed: 0_x' ,'Unnamed: 0_y'], axis=1)
+   # final_data['date']= pd.to_datetime(final_data['date'])
+    final_data
+
+
+#     horse_info_results = pd.merge(results, horse_info, how="left", on=["horse"])
+#     barrier_results = pd.merge(barrier, horse_info_results,
+#                               how="left",
+#                               on=["horse", "trainer", "jockey"])
+#    barrier_horse_info_results = pd.merge(
+#        barrier_results, horse_info, how="left", on=["horse"])
+#    results_with_comments = pd.merge(
+#        barrier_horse_info_results, comments, how="left", left_on=["date", "raceno_x", "plc_x", "horseno"],
+#        right_on=["date", "raceno", "plc", "horseno"])
+
+#     separate horse column into its name and its code
+#     results_with_comments[["horse", "horse_code"]] = results_with_comments.pop(
+#        'horse').str.split('(.*)\((\S*)\)', expand=True).drop(columns=[0, 3])
+
+#     final_data = pd.merge(results_with_comments, track_work,
+#                          how="left", on=["horse", "horse_code", #"date"])
 
     print("==========\ncompleted merge!\n")
+    
     return final_data
 
 
@@ -153,7 +173,7 @@ def split_and_write_data(final_data, filepath):
                                              random_state=1,
                                              test_size=0.2,
                                              shuffle=True)
-	print("==========\ndata is split, writing to file\n")
+    print("==========\ndata is split, writing to file\n")
     data_train.to_csv(f"{filepath}/data_train.csv")
     data_test.to_csv(f"{filepath}/data_test.csv")
 
