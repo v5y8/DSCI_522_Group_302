@@ -114,21 +114,21 @@ def merge_results(horse_info, results, comments, track_work, barrier):
     
    #Merging fixing
 
-results_comments = pd.merge(results, comments, how="left", on=["horseno", "date", "raceno", "plc"])
+    results_comments = pd.merge(results, comments, how="left", on=["horseno", "date", "raceno", "plc"])
 
 #Rename barrier time which is the same as finish time in results
-barrier.rename(columns={'time': 'finishtime'})
-barrier_binded = pd.concat([results_comments, barrier], sort=False)
+    barrier.rename(columns={'time': 'finishtime'})
+    barrier_binded = pd.concat([results_comments, barrier], sort=False)
     
-merged_data= pd.merge(barrier_binded, horse_info, how='left', on= ['horse'])
+    merged_data= pd.merge(barrier_binded, horse_info, how='left', on= ['horse'])
 
 #Removed the columns with _ch as this indicated Chinese.
-final_data = merged_data[merged_data.columns[~merged_data.columns.str.contains('.*_ch')]]
+    final_data = merged_data[merged_data.columns[~merged_data.columns.str.contains('.*_ch')]]
 
 #Drop repeated columns and unnessary indexes
-final_data =final_data.drop(['trainer_y','Unnamed: 0_x' ,'Unnamed: 0_y'], axis=1)
-final_data['date']= pd.to_datetime(final_data['date'])
-final_data
+   # final_data =final_data.drop(['trainer_y','Unnamed: 0_x' ,'Unnamed: 0_y'], axis=1)
+   # final_data['date']= pd.to_datetime(final_data['date'])
+    final_data
 
 
 #     horse_info_results = pd.merge(results, horse_info, how="left", on=["horse"])
@@ -149,6 +149,7 @@ final_data
 #                          how="left", on=["horse", "horse_code", #"date"])
 
     print("==========\ncompleted merge!\n")
+    
     return final_data
 
 
