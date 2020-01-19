@@ -58,13 +58,16 @@ If applicable, We could also plot a best-fit line via linear regression with res
 ![screenshot of residual plot](https://github.com/v5y8/DSCI_522_Group_302/raw/master/data/hypothetical_residual_plot.png)
 
 Finally, we can generate a table of our best/worst x number of predictions, and present them in a table.
+
 |Horse name|predicted placement | actual placement |difference |
 |-----------|------------|------------|---------------------|
 |Horse 1|1|1|0|
 |Horse 2|1|1|0|
 |Horse 3|1|1|0|
 |Horse 4|1|1|0|
+
 ...
+
 |Horse name|predicted placement | actual placement |difference |
 |-----------|------------|------------|---------------------|
 |Horse 10|1|10|9|
