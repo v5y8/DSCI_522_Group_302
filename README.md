@@ -18,7 +18,7 @@ The central research question we will set out to answer during this project is:
 
 **Given a set of features related to racing horses, can we predict the outcome of a race?**
 
-Thus, our research question is predictive, and the data we will use to attempt to answer our question is the _Hong Kong Horse Racing Dataset for Experts_, publicly available through kaggle. In particular, we will be using the _results_ and _horse_info_ tables.
+Thus, our research question is predictive, and the data we will use to attempt to answer our question is the [_Hong Kong Horse Racing Dataset for Experts_](https://www.kaggle.com/hrosebaby/horse-racing-dataset-for-experts-hong-kong), publicly available through kaggle via a Creative Commons License and [hosted at a different site](https://raw.githubusercontent.com/v5y8/horse_race_data/master). In particular, we will be using the _results_ and _horse_info_ tables.
 
 As its name suggests, the _horse_info_ dataset contains features describing the horses themselves. These features include name, country of origin, sex and age. The _results_ dataset consists of a table describing the outcome of various races. It shows the horses who participated in each race, along with several features describing both the pre-race conditions and the actual race outcomes. These include the pre-race odds, the final race times, the distance of the races, and the position of each horse thoughout the race. A more in-depth exploration of the data can be found in the EDA jupyter notebooks, located in the src directory of this repository. The main findings from the EDA are also discussed in the EDA section further down in this README.
 
