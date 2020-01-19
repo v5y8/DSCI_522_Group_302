@@ -1,5 +1,15 @@
 # DSCI 522 Group 302
 
+## Dependencies
+our project uses the following libraries:
+- [numpy](https://numpy.org/)
+- [pandas](https://pandas.pydata.org/getpandas.html)
+- [pandas-profiling](https://github.com/pandas-profiling/pandas-profiling)
+- [docopt](https://github.com/docopt/docopt)
+- [scikit-learn](https://scikit-learn.org/stable/install.html)
+
+Please install these packages if you do not have them for optimal usage.
+
 ## Project proposal
 
 ### Research question and description of data 
@@ -23,3 +33,26 @@ Machine learning is as much an empirical science as it is theoretical. As such, 
 To communicate our final results, we will create tables and plots displaying our final model's predicted horse placement values, along with the actual placements from the test set. We could compare these values in a plot, along with a line representing a theoretically perfect model. This will be done by way of a Markdown report, which will make it easy to discuss and display our results, but more importantly, automate the embedding of images and plots from other scripts.
 
 ### EDA discussion
+
+
+### Displaying Results of Analysis
+To visualize the differences between our (one or more depending on performance) models' predicted output of placement versus their actual placements in the test data, We could plot a scatter plot, with Predicted placement being the X axis and Actual placement being the Y axis, much like excercise 4 in lab 4 of Supervised Learning I.
+![screenshot of plot](https://github.com/v5y8/DSCI_522_Group_302/raw/master/data/hypothetical_pred_vs_actual_plot.png)
+
+If applicable, We could also plot a best-fit line via linear regression with respect to some of our most important features, much like the plots we generated for excercise 1 in lab 1 of Regression II.
+![screenshot of residual plot](https://github.com/v5y8/DSCI_522_Group_302/raw/master/data/hypothetical_residual_plot.png)
+
+Finally, we can generate a table of our best/worst x number of predictions, and present them in a table.
+Horse name|predicted placement | actual placement |difference |
+-----------|------------|------------|---------------------|
+Horse 1|1|1|0|
+Horse 2|1|1|0|
+Horse 3|1|1|0|
+Horse 4|1|1|0|
+...
+Horse name|predicted placement | actual placement |difference |
+-----------|------------|------------|---------------------|
+Horse 10|1|10|9|
+Horse 11|1|11|10|
+Horse 12|1|12|11|
+Horse 13|1|13|12|
