@@ -19,7 +19,7 @@ Hong Kong horse racing bets contributed a staggering $15.8 billion USD turnover 
 
 A publically available dataset with Hong Kong horse racing statistics is available on Kaggle [@Dataset] for 2015-2017. The data set author mentions that this data was compiled from data from The Hong Kong Jockey Club [@HKJC]. This data was utilized to create a predictive model for horse performance. The following report sections explore this data and comment on the success of said model.
 
-The R and Python programming languages were used in this analysis [@R; @Python]. Python packages used in the analysis include: pandas [@mckinney-proc-scipy-2010], docopt [@docoptpython], numpy [@numpy], scikit-learn [@scikit-learn], altair [@Altair2018], pandas profiling [@pandasprofiling2019], matplotlib [@Hunter:2007], and seaborn (citation still under development). R packages used in this analysis include: knitr [@knitr], and docopt [@docopt].
+The R and Python programming languages were used in this analysis [@R; @Python]. Python packages used in the analysis include: pandas [@mckinney-proc-scipy-2010], docopt [@docoptpython], numpy [@numpy], scikit-learn [@scikit-learn], altair [@Altair2018], pandas profiling [@pandasprofiling2019], matplotlib [@Hunter:2007], and seaborn (citation still under development). R packages used in this analysis include: knitr [@knitr], docopt [@docopt], and tidyverse [@tidyverse].
 
 ## Exploratory Data Analysis
 
