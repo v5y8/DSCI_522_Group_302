@@ -18,8 +18,7 @@ The central research question we will set out to answer during this project is:
 
 **Given a set of features related to racing horses, can we predict the outcome of a race?**
 
-Thus, our research question is predictive, and the data we will use to attempt to answer our question is the [_Hong Kong Horse Racing Dataset for Experts_](https://www.kaggle.com/hrosebaby/horse-racing-dataset-for-experts-hong-kong), publicly available through kaggle via a Creative Commons License and [hosted at a different site](https://raw.githubusercontent.com/v5y8/horse_race_data/master). In particular, we will be using the _results_ and _horse_info_ tables.
-
+Thus, our research question is predictive, and the data we will use to attempt to answer our question is the _Hong Kong Horse Racing Dataset for Experts_, publicly available through kaggle:
 
 https://www.kaggle.com/hrosebaby/horse-racing-dataset-for-experts-hong-kong
 
