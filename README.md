@@ -10,26 +10,22 @@ This project attempts to build a regression model to answer the research questio
 
 **Given a set of features related to racing horses, can we predict the outcome of a race?**
 
-The dataset used to answer this question is the _Hong Kong Horse Racing Dataset for Experts_, publicly available through kaggle:
-
-https://www.kaggle.com/hrosebaby/horse-racing-dataset-for-experts-hong-kong
-
-The data has been rehosted on github:
+The dataset used to answer this question is the _Hong Kong Horse Racing Dataset for Experts_, publicly available through Kaggle (HorseBaby 2018). This data has been rehosted on github for use with this project's scripts:
 
 https://raw.githubusercontent.com/v5y8/horse_race_data/master
 
-Please use the github repository for downloading with download_data.py.
+Please use the above github repository for downloading via setup.sh.
 
 ## Final Report
 
-The final report can be found here.
+The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_302/blob/master/doc/final_report.md).
 
 ## Usage
 
 To replicate the above analysis, please run the following bash script:
 
 ```
-bash
+bash setup.sh
 ```
 
 ## Dependencies
@@ -53,3 +49,16 @@ Please install these packages for use with this project.
 
 ## Contributions
 We welcome all contributions to this project! If you notice a bug, or have a feature request, please open up an issue [here](https://github.com/UBC-MDS/DSCI_522_Group_302/issues/new). If you'd like to contribute a feature or bug fix, you can fork our repo and submit a pull request. We will review pull requests within 7 days. All contributors must abide by our [code of conduct](https://github.com/v5y8/DSCI_522_Group_302/blob/master/CODE_OF_CONDUCT.md).
+
+## References
+
+<div id="refs" class="references">
+
+<div id="ref-Dataset">
+
+HorseBaby. 2018. “Horse Racing Dataset for Experts (Hong Kong).”
+<https://www.kaggle.com/hrosebaby/horse-racing-dataset-for-experts-hong-kong>.
+
+</div>
+
+</div>
