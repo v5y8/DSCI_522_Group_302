@@ -11,6 +11,7 @@ bibliography: final_report.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_knit$set(root.dir = here::here())
+library(tidyverse)
 ```
 
 ## Introduction
@@ -27,10 +28,27 @@ The R and Python programming languages were used in this analysis [@R; @Python].
 
 ## Analysis
 
-- Present results in context of question
-- Critique of analysis
-  - limitations
-  - assumptions
-  - future directions
+To answer our research question, we created a model to predict horse race times from various features in the Hong Kong horse racing dataset. As such, this consisted in a regression tasks, and so we set out to produce a linear regression model. 
+
+Before taking a look at the results, the feature selection and optimizations steps will be discussed. To start off, the dataset contained a mix of 36 categorical and numeric features. There were main decisions that needed to be made with regards to these features: which ones to pick (1), and whether or not to transform our numeric features to high order polynomials (2). As it turned out, both challenges could be addressed with the same solution. First, the numeric features were transformed to 5th degree polynomials (including cross terms). Then, a recursive feature elimination (RFE) algorithm was applied, which selected which of the featues, both original and transformed, should be selected. To run the RFE, the number of features to select had to be specified. Thus, a grid search was done to optimize this hyperparameter, using the $R^2$ correlation coefficent on the validation set as the scoring method. The results of the grid search are shown below.
+
+```{r grid-search-res, warning=FALSE, message=FALSE}
+results_grid_search <- read_csv("data/results_data/grid_search_results.csv")[2:4] %>% 
+                         rename("# features selected" = n_features_to_select,
+                                "Mean R^2 val score" = "mean_val_score (r2)", 
+                                "Fit time per fold (s)" = "fit time per fold (s)")
+knitr::kable(results_grid_search)
+```
+
+In the table above, we can see that after roughly 25-28 features selected, the mean R^2 validation score no longer increased. Therefore, a value of 25 was used as the number of features selected, and a linear model was trained with the 25 most predictive features given by RFE on the entire training set. The linear model was then used on the test data. The results are shown below.
+
+
+```{r, out.width = "80%", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("../img/results_plot.png")
+```
+
+Visually, it appears as though our linear regression model performs quite well compared to the theoretically perfect model represented by the red dashed line. The R^2 score in this case was 0.909. One thing to keep in mind, however, is that the order of finishes in a horse race can come down to fractions of a second, and so even a model capable of predicting finish times with an error of less than 1s can prove to be not very useful. 
+
+Another note to make about the results is that the prediction values seem to come in clusters. This suggests that the model may be segregating prediction values based on one feature (for instance, distance), and then fine tuning the predicted values based on other features. Therefore, the next step of this project would be to investigate this by looking more closely at the weights of our linear model. Additionally, this analysis could be extended by using predicted finish times to estimate race finish orders, and compare these predicted finishing positions to the actual ones. 
 
 ## References
