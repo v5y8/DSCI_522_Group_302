@@ -1,0 +1,37 @@
+Feature,Feature Description,Is it in Barrier?,Predictor?,Why?
+row,postition of horse at end of race (always numeric),0,0,won’t exist at time of prediction
+plc,placement of horse (sometimes not numeric),1,0,won’t exist at time of prediction
+horseno,index of horse given at race (the number that they wear),0,1,
+horse,horse name,1,1,
+jockey,jockey name,1,1,
+trainer_x,trainer name,1,1,
+actualwt,weight horse carried during race (jockey+gear),0,1,
+declarewt,actualwt + horse weight,0,1,
+draw,starting position (stall),1,1,
+lbw,lengths behind winner,1,0,won’t exist at time of prediction
+runningpos,running positions during race,1,0,won’t exist at time of prediction
+finishtime,time of race,1,0,won’t exist at time of prediction
+winodds,win odds of horse at start of race,0,1,
+date,date of race,1,0,unique
+raceno,race number of the day,1,1,
+class,quality of race (1 = championship),0,1,
+distance,distance of race,1,1,
+going,track condition,1,1,
+handicap,weight added to horse based on rating (?),0,1,
+course,"course type (ex gravel, tuff)",1,1,
+stake,money at stake,0,1,
+venue,track,1,1,
+dataset,"dataset run is from (barrier, results)",1,1,
+gear,gear on horse,1 (lots of nans),1,
+comment,comments druing race,1,0,won’t exist at time of prediction
+result,did horse finish,1,0,only exists for barrier runs
+country,horse country,1,1,
+colour,horse color,1,1,
+sex,horse sex,1,1,
+owner,horse owner,1,1,
+import_type,"PP – previously raced, PPG – privately purchased griffins",1,1,
+current_rating,rating system for determining handicaps,1,0,too many NaNs in fit
+start_rating,previous rating,1,0,too many NaNs in fit
+sire,horse father,1,1,
+dam,horse mother,1,1,
+age,age of horse,1,0,too many NaNs in fit
