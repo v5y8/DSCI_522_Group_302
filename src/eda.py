@@ -94,17 +94,17 @@ def main(file_path_in, file_path_out):
     
     # Visualize class vs the place they were in 
     
-    filtered_pos_df = data_train[data_train["plc"].isin([str(x) for x in range(0, 20)])]
-    filtered_pos_df["plc"] = filtered_pos_df["plc"].apply(lambda x: int(x) if x is not np.NaN else x)
-    filtered_pos_df["winodds"] = filtered_pos_df["winodds"].apply(lambda x: int(x) if x is not np.NaN else x)
+#     filtered_pos_df = data_train[data_train["plc"].isin([str(x) for x in range(0, 20)])]
+#     filtered_pos_df["plc"] = filtered_pos_df["plc"].apply(lambda x: int(x) if x is not np.NaN else x)
+#     filtered_pos_df["winodds"] = filtered_pos_df["winodds"].apply(lambda x: int(x) if x is not np.NaN else x)
     
-    plc_winodds = alt.Chart(filtered_pos_df.groupby("winodds").mean().reset_index()).mark_line().encode(
-        x=alt.X('winodds:Q', scale=alt.Scale(zero=False), title="Win odds"),
-        y=alt.Y('plc:Q', title="Placement"),
-        ).properties(width=500, height=300, title='Average numerical placement of horses by win odds'
-        ).configure_axis(titleFontSize=15, labelFontSize=15
-        ).configure_title(fontSize=16)
-    plc_winodds.save(f"{file_path_out}/plc_winodds.png")
+#     plc_winodds = alt.Chart(filtered_pos_df.groupby("winodds").mean().reset_index()).mark_line().encode(
+#         x=alt.X('winodds:Q', scale=alt.Scale(zero=False), title="Win odds"),
+#         y=alt.Y('plc:Q', title="Placement"),
+#         ).properties(width=500, height=300, title='Average numerical placement of horses by win odds'
+#         ).configure_axis(titleFontSize=15, labelFontSize=15
+#         ).configure_title(fontSize=16)
+#     plc_winodds.save(f"{file_path_out}/plc_winodds.png")
 
 
 # script entry point
