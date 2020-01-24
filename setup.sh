@@ -24,6 +24,7 @@ printf "============\nfinished data wrangling\n"
 # EDA script
 printf "============\nstarting EDA analysis\n"
 python src/eda.py data img
+Rscript src/plot.R data/data_train.csv img
 printf "============\nfinished EDA analysis\n"
 
 # train and fit model
