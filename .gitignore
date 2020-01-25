@@ -134,3 +134,9 @@ dmypy.json
 
 # Ubuntu LibreOffice Files
 *.ods
+
+#csv
+*.csv
+final_report.html
+final_report.md
+
