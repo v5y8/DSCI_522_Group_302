@@ -10,7 +10,7 @@ This project attempts to build a regression model to answer the research questio
 
 **Given a set of features related to racing horses, can we predict the outcome of a race?**
 
-The produced model is able to predict finish times with an R^2 correaltion of 0.909.
+The model produced is able to predict finish times with an R^2 correaltion of 0.909.
 
 The dataset used to answer this question is the _Hong Kong Horse Racing Dataset for Experts_, publicly available through Kaggle (HorseBaby 2018). This data has been rehosted on github for use with this project's scripts:
 
