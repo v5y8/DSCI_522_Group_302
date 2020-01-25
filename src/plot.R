@@ -46,7 +46,7 @@ main <- function(file_path, out_dir){
     labs(title= "Average numerical placement of horses by win odds", x= "Win odds", y= "Placement") +
     scale_y_continuous(breaks=c(1,2,3,4,5,6,7,8,9,10))
   
-  ggsave(p1, file=paste(out_dir, 'numeric_placement.png', sep = ""))
+  ggsave(p1, file=paste(out_dir, '/numeric_placement.png', sep = ""))
 }
 
 main(opt[["file_path"]], opt[["out_dir"]])
