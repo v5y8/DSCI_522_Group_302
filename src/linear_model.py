@@ -1,3 +1,7 @@
+# author: Rob Blumberg
+# date: 2020-01-25
+#
+
 """This script runs a pre-optimized linear regression model on training and test data.
 The linear regression model is trained with the training data, and then makes predictions
 on the test set. It then outputs as a .png plot in the desired directory showing predicted
