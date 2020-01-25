@@ -20,7 +20,7 @@ Please use the above github repository for downloading via setup.sh.
 
 ## Final Report
 
-The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_302/blob/master/doc/final_report.md).
+The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_302/blob/master/doc/final_report.Rmd).
 
 ## Usage
 
