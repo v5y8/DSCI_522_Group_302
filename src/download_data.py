@@ -62,7 +62,7 @@ def download_files(url):
            "horse_info" - horse_info
            "results" - results
             "comments" - comments
-            "track_work" - track_work
+            "trackwork" - trackwork
             "barrier" - barrier
     -------
 
@@ -75,7 +75,7 @@ def download_files(url):
                           index_col=0)
     comments = pd.read_csv(f"{url}/comments.csv",
                            index_col=0)
-    track_work = pd.read_csv(f"{url}/trackwork.csv",
+    trackwork = pd.read_csv(f"{url}/trackwork.csv",
                              index_col=0)
     barrier = pd.read_csv(f"{url}/barrier.csv",
                           index_col=0)
@@ -84,7 +84,7 @@ def download_files(url):
     return {"horse_info": horse_info,
             "results": results,
             "comments": comments,
-            "track_work": track_work,
+            "trackwork": trackwork,
             "barrier": barrier}
 
 

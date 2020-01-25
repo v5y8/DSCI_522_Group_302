@@ -34,7 +34,7 @@ printf "============\nfinished training model\n"
 
 # render R markdown
 printf "============\nstarting rendering report\n"
-Rscript -e "rmarkdown::render('src/final_report.Rmd')"
+Rscript -e "rmarkdown::render('doc/final_report.Rmd')"
 printf "============\nfinished rendering report\n"
 
 printf "============\nfinished running pipeline, exiting\n"

@@ -34,7 +34,7 @@ def main(file_path_in, file_path_out):
         the location where the raw data is hosted. Assumes that the folder contains 5 files:
             - horse_info.csv
             - results.csv
-            - trackworks.csv
+            - trackwork.csv
             - barrier.csv
             - comments.csv
     file_path_out
@@ -44,8 +44,8 @@ def main(file_path_in, file_path_out):
     -------
         None if executed successfully, otherwise raises Exception.
     """
-    horse_info, results, comments, track_work, barrier = import_files(file_path_in)
-    complete_dataset = merge_results(horse_info, results, comments, track_work, barrier)
+    horse_info, results, comments, trackwork, barrier = import_files(file_path_in)
+    complete_dataset = merge_results(horse_info, results, comments, trackwork, barrier)
     split_and_write_data(complete_dataset, file_path_out)
     print(f"successfully written data to {file_path_out}!\n")
 
@@ -63,7 +63,7 @@ def import_files(filepath):
             - horse_info
             - results
             - comments
-            - track_work
+            - trackwork
             - barrier
     -------
 
@@ -72,13 +72,13 @@ def import_files(filepath):
     horse_info = pd.read_csv(f"{filepath}/horse_info.csv", index_col=0)
     results = pd.read_csv(f"{filepath}/results.csv", index_col=0)
     comments = pd.read_csv(f"{filepath}/comments.csv", index_col=0)
-    track_work = pd.read_csv(f"{filepath}/trackwork.csv", index_col=0)
+    trackwork = pd.read_csv(f"{filepath}/trackwork.csv", index_col=0)
     barrier = pd.read_csv(f"{filepath}/barrier.csv", index_col=0)
     print("==========\nsuccessfully imported CSV data!\n")
-    return horse_info, results, comments, track_work, barrier
+    return horse_info, results, comments, trackwork, barrier
 
 
-def merge_results(horse_info, results, comments, track_work, barrier):
+def merge_results(horse_info, results, comments, trackwork, barrier):
     """
     returns a merged dataframe of relevant .csv files.
     Parameters
@@ -89,7 +89,7 @@ def merge_results(horse_info, results, comments, track_work, barrier):
         dataframe holding race results.
     comments
         dataframe holding comments for race.
-    track_work
+    trackwork
         dataframe holding track work information.
     barrier
         dataframe holding barrier trial results.
