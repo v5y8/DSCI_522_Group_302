@@ -16,7 +16,7 @@ The dataset used to answer this question is the _Hong Kong Horse Racing Dataset 
 
 https://raw.githubusercontent.com/v5y8/horse_race_data/master
 
-Please use the above github repository for downloading via setup.sh.
+Please ensure the above github repository is used for downloading with Makefile.
 
 ## Final Report
 
