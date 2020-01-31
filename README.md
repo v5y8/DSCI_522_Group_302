@@ -33,21 +33,21 @@ bash setup.sh
 ## Dependencies
 Our project uses the following libraries:
 
-Python:
-- [pandas](https://pandas.pydata.org/getpandas.html)
-- [docopt](https://github.com/docopt/docopt)
-- [numpy](https://numpy.org/)
-- [scikit-learn](https://scikit-learn.org/stable/install.html)
-- [altair](https://altair-viz.github.io/)
-- [pandas-profiling](https://github.com/pandas-profiling/pandas-profiling)
-- [matplotlib](https://matplotlib.org/)
-- [seaborn](https://seaborn.pydata.org/)
-- [selenium](https://pypi.org/project/selenium/)
+Python 3.7.5 and Python Packages:
+- [pandas 0.25.3](https://pandas.pydata.org/getpandas.html)
+- [docopt 0.6.2](https://github.com/docopt/docopt)
+- [numpy 1.17.4](https://numpy.org/)
+- [scikit-learn 0.22](https://scikit-learn.org/stable/install.html)
+- [altair 3.2.0](https://altair-viz.github.io/)
+- [pandas-profiling 2.3.0](https://github.com/pandas-profiling/pandas-profiling)
+- [matplotlib 3.1.1](https://matplotlib.org/)
+- [seaborn 0.9.0](https://seaborn.pydata.org/)
+- [selenium 3.141.0](https://pypi.org/project/selenium/)
 
-R:
-- [knitr](https://yihui.org/knitr/)
-- [tidyverse](https://www.tidyverse.org/)
-- [docopt](https://github.com/docopt/docopt)
+R version 3.6.1 and R packages:
+- [knitr 1.27.2](https://yihui.org/knitr/)
+- [tidyverse 1.2.1](https://www.tidyverse.org/)
+- [docopt 0.6.1](https://github.com/docopt/docopt)
 
 Please install these packages for use with this project.
 
