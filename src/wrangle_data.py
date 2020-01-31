@@ -16,6 +16,7 @@ Arguments:
 <file_path_out>  Path where the compiled data is to be written to locally.
 """
 
+import os
 import numpy as np
 import pandas as pd
 from docopt import docopt
@@ -44,9 +45,9 @@ def main(file_path_in, file_path_out):
     -------
         None if executed successfully, otherwise raises Exception.
     """
-    horse_info, results, comments, trackwork, barrier = import_files(file_path_in)
-    complete_dataset = merge_results(horse_info, results, comments, trackwork, barrier)
-    split_and_write_data(complete_dataset, file_path_out)
+    #horse_info, results, comments, trackwork, barrier = import_files(file_path_in)
+    #complete_dataset = merge_results(horse_info, results, comments, trackwork, barrier)
+    #split_and_write_data(complete_dataset, file_path_out)
     print(f"successfully written data to {file_path_out}!\n")
 
 
@@ -119,7 +120,6 @@ def merge_results(horse_info, results, comments, trackwork, barrier):
 
     return final_data
 
-
 def split_and_write_data(final_data, filepath):
     """
     splits the data into a train and test sets with a 8/2 split, then writes them to the specified file path.
@@ -143,6 +143,14 @@ def split_and_write_data(final_data, filepath):
     print("==========\ndata is split, writing to file\n")
     data_train.to_csv(f"{filepath}/data_train.csv")
     data_test.to_csv(f"{filepath}/data_test.csv")
+
+def path_validation():
+    if (os.path.exists(opt["<file_path_in>"])) and (os.path.exists(opt["<file_path_out>"])):
+        pass
+    else:
+        raise ValueError("File paths do not exist")
+
+path_validation()
 
 # script entry point
 if __name__ == '__main__':
