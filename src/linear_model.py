@@ -8,11 +8,12 @@ on the test set. It then outputs as a .png plot in the desired directory showing
 vs actual results.
 
 
-Usage: linear_model.py <training_data_file_path> <test_data_file_path> <image_plot_file_path>
+Usage: linear_model.py <training_data_file_path> <test_data_file_path> <grid_results_file_path> <image_plot_file_path>
 
 Arguments:
 <training_data_file_path>   File path where training data is stored
 <test_data_file_path>       File path where test data is stored
+<grid_results_file_path>    File path where grid search results are saved
 <image_plot_file_path>      File path to save image of results plot
 """
 from docopt import docopt
@@ -36,7 +37,7 @@ opt = docopt(__doc__)
 
 
 
-def main(training_data_file_path, test_data_file_path, image_plot_file_path):
+def main(training_data_file_path, test_data_file_path, grid_results_file_path, image_plot_file_path):
     """
     Entry point for script. Takes in training_data_file_path, test_data_file_path
     and image_plot_file_path from commandline, and runs a pre-optimized linear regression
@@ -50,6 +51,8 @@ def main(training_data_file_path, test_data_file_path, image_plot_file_path):
     test_data_file_path 
        - file path where training data is located. Assumes data is a .csv file in same
         format as data/data_train.csv (output of download_data.py script)
+    grid_results_file_path
+        - file path where grid search results are saved
     image_plot_file_path
         - file path where image of results plot will be saved
 
@@ -57,7 +60,7 @@ def main(training_data_file_path, test_data_file_path, image_plot_file_path):
     -------
         None, but saves a plot to the specified file path
     """
-    plot_results(training_data_file_path, test_data_file_path, image_plot_file_path)
+    plot_results(training_data_file_path, test_data_file_path, grid_results_file_path, image_plot_file_path)
 
 def time_parser(input_time):
     """
@@ -195,7 +198,7 @@ def data_preprocessing(training_data_file_path, test_data_file_path):
     
     return X_train_preprocessed, X_test_preprocessed, y_train, y_test
 
-def linear_model_results(training_data_file_path, test_data_file_path):
+def linear_model_results(training_data_file_path, test_data_file_path, grid_results_file_path):
     """
     Fits pre-optimized linear regression model on training data,
     and makes predictions on test data. Uses output of 
@@ -215,9 +218,12 @@ def linear_model_results(training_data_file_path, test_data_file_path):
     test_results 
         (pd.DataFrame) - Data frame containing test set predictions and actual values
     """
+
+    grid_results = pd.read_csv(grid_results_file_path)
+    n_features_to_select = grid_results["n_features_to_select"][0]
     
     X_train_preprocessed, X_test_preprocessed, y_train, y_test = data_preprocessing(training_data_file_path, test_data_file_path)
-    rfe = RFE(LinearRegression(), n_features_to_select=25)
+    rfe = RFE(LinearRegression(), n_features_to_select=n_features_to_select)
     rfe.fit(X_train_preprocessed, y_train)
 
     lr = LinearRegression()
@@ -227,7 +233,7 @@ def linear_model_results(training_data_file_path, test_data_file_path):
                                 "Predicted finish time" : lr.predict(rfe.transform(X_test_preprocessed))})
     return test_results
 
-def plot_results(training_data_file_path, test_data_file_path, image_plot_file_path):
+def plot_results(training_data_file_path, test_data_file_path, grid_results_file_path, image_plot_file_path):
     """
     Plots results from linear regression on test set. Uses output of 
     linear_model_results() function. Saves plot to specified file path.
@@ -248,7 +254,7 @@ def plot_results(training_data_file_path, test_data_file_path, image_plot_file_p
     None
     """
     
-    test_results=linear_model_results(training_data_file_path, test_data_file_path)
+    test_results=linear_model_results(training_data_file_path, test_data_file_path, grid_results_file_path)
 
     fig, ax = plt.subplots(1, 1, figsize = (8 ,8))
     ax.scatter(test_results["Predicted finish time"], test_results["Actual finish time"])
@@ -262,4 +268,4 @@ def plot_results(training_data_file_path, test_data_file_path, image_plot_file_p
 
 # script entry point
 if __name__ == '__main__':
-    main(opt["<training_data_file_path>"], opt["<test_data_file_path>"], opt["<image_plot_file_path>"])
+    main(opt["<training_data_file_path>"], opt["<test_data_file_path>"], opt["<grid_results_file_path>"], opt["<image_plot_file_path>"])
