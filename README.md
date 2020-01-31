@@ -20,18 +20,23 @@ Please use the above github repository for downloading via setup.sh.
 
 ## Final Report
 
-The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_302/blob/master/doc/final_report.Rmd).
+The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_302/blob/master/doc/final_report.md).
 
 ## Usage
 
-To replicate the above analysis, please run the following bash script:
+To replicate the above analysis, please clone this Github repository, install the dependencies below, and run the following command in the terminal at the root directory of this project:
 
 ```
-bash setup.sh
+make all
+```
+
+To reset this repository to a clean state, run the following command in the terminal at the root directory of this project:
+
+```
+make clean
 ```
 
 ## Dependencies
-Our project uses the following libraries:
 
 Python 3.7.5 and Python Packages:
 - [pandas 0.25.3](https://pandas.pydata.org/getpandas.html)
@@ -48,8 +53,6 @@ R version 3.6.1 and R packages:
 - [knitr 1.27.2](https://yihui.org/knitr/)
 - [tidyverse 1.2.1](https://www.tidyverse.org/)
 - [docopt 0.6.1](https://github.com/docopt/docopt)
-
-Please install these packages for use with this project.
 
 ## Contributions
 We welcome all contributions to this project! If you notice a bug, or have a feature request, please open up an issue [here](https://github.com/UBC-MDS/DSCI_522_Group_302/issues/new). If you'd like to contribute a feature or bug fix, you can fork our repo and submit a pull request. We will review pull requests within 7 days. All contributors must abide by our [code of conduct](https://github.com/v5y8/DSCI_522_Group_302/blob/master/CODE_OF_CONDUCT.md).
