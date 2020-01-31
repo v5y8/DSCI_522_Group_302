@@ -257,12 +257,12 @@ def plot_results(training_data_file_path, test_data_file_path, grid_results_file
     test_results=linear_model_results(training_data_file_path, test_data_file_path, grid_results_file_path)
 
     fig, ax = plt.subplots(1, 1, figsize = (8 ,8))
-    ax.scatter(test_results["Predicted finish time"], test_results["Actual finish time"])
+    ax.scatter(test_results["Predicted finish time"], test_results["Actual finish time"], alpha=0.5)
     ax.plot([min(test_results["Actual finish time"]), max(test_results["Actual finish time"])],
             [min(test_results["Actual finish time"]), max(test_results["Actual finish time"])], 
             linestyle = "--", color = "red")
-    ax.set_xlabel("Predicted finish time", size=14)
-    ax.set_ylabel("Actual finish time", size=14)
+    ax.set_xlabel("Predicted finish time (s)", size=14)
+    ax.set_ylabel("Actual finish time (s)", size=14)
     ax.set_title("Actual vs predicted finish times \non test set from optimized linear model", size = 15)
     plt.savefig(image_plot_file_path)
 
