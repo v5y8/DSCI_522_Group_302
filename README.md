@@ -24,7 +24,7 @@ The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_3
 
 ## Usage
 
-To replicate the above analysis, please clone this Github repository, install the dependencies below, and run the following command in the terminal at the root directory of this project:
+To replicate the above analysis, please clone this Github repository, install the dependencies below, and run the following command in the terminal at the root directory of this project (script takes 15-20 minutes to fully execute):
 
 ```
 make all
