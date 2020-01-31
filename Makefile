@@ -7,10 +7,13 @@ data/data_test.csv data/data_train.csv: data/barrier.csv data/comments.csv data/
 img/age_dist.png img/correlation_plot.png img/country_dist.png img/heatmap_null.png img/weight_dist.png img/results_plot.png: data/data_test.csv data/data_train.csv
 	python src/eda.py data img && Rscript src/plot.R data/data_train.csv img
 
-train: data/data_test.csv data/data_train.csv
-	python src/linear_model.py data/data_train.csv data/data_test.csv img/results_plot.png
+data/results_data/grid_search_results.csv: data/data_train.csv
+	python src/grid_search.py data/data_train.csv data/results_data/grid_search_results.csv
 
-all: img/age_dist.png img/correlation_plot.png img/country_dist.png img/heatmap_null.png img/weight_dist.png img/results_plot.png data/data_train.csv data/data_test.csv
+train: data/data_test.csv data/data_train.csv data/results_data/grid_search_results.csv
+	python src/linear_model.py data/data_train.csv data/data_test.csv data/results_data/grid_search_results.csv img/results_plot.png
+
+all: img/age_dist.png img/correlation_plot.png img/country_dist.png img/heatmap_null.png img/weight_dist.png img/results_plot.png data/data_train.csv data/data_test.csv train
 	Rscript -e "rmarkdown::render('doc/final_report.Rmd')"
 
 clean:
@@ -18,3 +21,4 @@ clean:
 	rm -f data/*.csv
 	rm -f doc/final_report.html
 	rm -f doc/final_report.md
+	rm -f data/results_data/grid_search_results.csv
