@@ -20,36 +20,39 @@ Please use the above github repository for downloading via setup.sh.
 
 ## Final Report
 
-The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_302/blob/master/doc/final_report.Rmd).
+The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_302/blob/master/doc/final_report.md).
 
 ## Usage
 
-To replicate the above analysis, please run the following bash script:
+To replicate the above analysis, please clone this Github repository, install the dependencies below, and run the following command in the terminal at the root directory of this project (script takes 15-20 minutes to fully execute):
 
 ```
-bash setup.sh
+make all
+```
+
+To reset this repository to a clean state, run the following command in the terminal at the root directory of this project:
+
+```
+make clean
 ```
 
 ## Dependencies
-Our project uses the following libraries:
 
-Python:
-- [pandas](https://pandas.pydata.org/getpandas.html)
-- [docopt](https://github.com/docopt/docopt)
-- [numpy](https://numpy.org/)
-- [scikit-learn](https://scikit-learn.org/stable/install.html)
-- [altair](https://altair-viz.github.io/)
-- [pandas-profiling](https://github.com/pandas-profiling/pandas-profiling)
-- [matplotlib](https://matplotlib.org/)
-- [seaborn](https://seaborn.pydata.org/)
-- [selenium](https://pypi.org/project/selenium/)
+Python 3.7.5 and Python Packages:
+- [pandas 0.25.3](https://pandas.pydata.org/getpandas.html)
+- [docopt 0.6.2](https://github.com/docopt/docopt)
+- [numpy 1.17.4](https://numpy.org/)
+- [scikit-learn 0.22](https://scikit-learn.org/stable/install.html)
+- [altair 3.2.0](https://altair-viz.github.io/)
+- [pandas-profiling 2.3.0](https://github.com/pandas-profiling/pandas-profiling)
+- [matplotlib 3.1.1](https://matplotlib.org/)
+- [seaborn 0.9.0](https://seaborn.pydata.org/)
+- [selenium 3.141.0](https://pypi.org/project/selenium/)
 
-R:
-- [knitr](https://yihui.org/knitr/)
-- [tidyverse](https://www.tidyverse.org/)
-- [docopt](https://github.com/docopt/docopt)
-
-Please install these packages for use with this project.
+R version 3.6.1 and R packages:
+- [knitr 1.27.2](https://yihui.org/knitr/)
+- [tidyverse 1.2.1](https://www.tidyverse.org/)
+- [docopt 0.6.1](https://github.com/docopt/docopt)
 
 ## Contributions
 We welcome all contributions to this project! If you notice a bug, or have a feature request, please open up an issue [here](https://github.com/UBC-MDS/DSCI_522_Group_302/issues/new). If you'd like to contribute a feature or bug fix, you can fork our repo and submit a pull request. We will review pull requests within 7 days. All contributors must abide by our [code of conduct](https://github.com/v5y8/DSCI_522_Group_302/blob/master/CODE_OF_CONDUCT.md).
