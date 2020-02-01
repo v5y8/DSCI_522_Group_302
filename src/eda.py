@@ -10,7 +10,7 @@ Arguments:
 <file_path_out> Name of directory for figures to be saved in, 'img' folder recommended.
 
 """
-
+import os
 import pandas as pd
 import altair as alt
 import numpy as np
@@ -67,7 +67,7 @@ def main(file_path_in, file_path_out):
     age_dist.save(f"{file_path_out}/age_dist.png")
 
     
-    # Country where hroses are from distribution plot
+    # Country where horses are from distribution plot
     
     #remove null values
     data_train = data_train[~data_train['country'].isnull()]
@@ -94,6 +94,14 @@ def main(file_path_in, file_path_out):
     
     weight_dist.save(f"{file_path_out}/weight_dist.png")
 
+#test
+def path_validation():
+    if (os.path.exists(opt["<file_path_in>"])) and (os.path.exists(opt["<file_path_out>"])):
+        pass
+    else:
+        raise ValueError("File paths do not exist")
+
+path_validation()
     
 # script entry point
 if __name__ == '__main__':
