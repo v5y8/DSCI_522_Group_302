@@ -1,56 +1,50 @@
-# author: James Liu
-# date: 2020-01-18
-#This script downloads .csv files for horse-racing data in Hong Kong from the user-defined URL
-#then processes them and writes them to a user-specified location on the local machine
-#as data_train.csv and data_test.csv. This script takes  the URL where the data is hosted
-#and the location where the user would like the data to be written to locally.
-data/raw_files/barrier.csv data/raw_files/comments.csv data/raw_files/horse_info.csv data/raw_files/results.csv data/raw_files/trackwork.csv:
+# Driver Script
+# Author: James Liu / Derek Kruszewski
+# Date: 2020-01-31 (Updated 2020-02-04)
+# This script downloads, wrangles, data explores, feature selects, and generates a model to predict
+# horse race times from a horse race data set.
+
+all: doc/final_report.md doc/final_report.html
+
+# Download raw data
+data/raw_files/barrier.csv data/raw_files/comments.csv data/raw_files/horse_info.csv data/raw_files/results.csv data/raw_files/trackwork.csv: src/download_data.py
 	python src/download_data.py https://raw.githubusercontent.com/v5y8/horse_race_data/master data/raw_files
 
-
-# author: Derek Kruszewski
-# date: 2020-01-21
-#This script imports raw .csv files for horse-racing data in Hong Kong from user-defined file-path,
-#performs pre-preprocessing, merges the files together, and writes them to a user-specified location 
-#on the local machine as data_train.csv and data_test.csv. This script takes the filepath where the raw
-#data is saved and the location where the user would like the compiled data to be written to locally.
-data/data_test.csv data/data_train.csv: data/raw_files/barrier.csv data/raw_files/comments.csv data/raw_files/horse_info.csv data/raw_files/results.csv data/raw_files/trackwork.csv
+# Create test/train data
+data/data_test.csv data/data_train.csv: data/raw_files/barrier.csv data/raw_files/comments.csv data/raw_files/horse_info.csv data/raw_files/results.csv data/raw_files/trackwork.csv src/wrangle_data.py
 	python src/wrangle_data.py data/raw_files data
 
+# Create exploratory data analysis figures using python
+img/age_dist.png img/correlation_plot.png img/country_dist.png img/heatmap_null.png img/weight_dist.png: data/data_train.csv src/eda.py
+	python src/eda.py data img 
 
-# author: Carlina Kim
-# date: 2020-01-23
-#This script creates exploratory data visualiztions and tables that help readers understand the Hong Kong horse racing data. 
-img/age_dist.png img/correlation_plot.png img/country_dist.png img/heatmap_null.png img/weight_dist.png img/results_plot.png: data/data_test.csv data/data_train.csv
-	python src/eda.py data img && Rscript src/plot.R data/data_train.csv img
+# Create exploratory data analysis figures using R
+img/numeric_placement.png: data/data_train.csv src/plot.R
+	Rscript src/plot.R data/data_train.csv img
 
-
-# author: Rob Blumberg
-# date: 2020-01-29
-#This script runs a grid search over number of features to select using linear
-#regression and recursive feature elimination. It then outputs the results as a .csv
-#in the desired directory
-data/results_data/grid_search_results.csv: data/data_train.csv
+# Select features and output grid search results
+data/results_data/grid_search_results.csv: data/data_train.csv src/grid_search.py
 	python src/grid_search.py data/data_train.csv data/results_data/grid_search_results.csv
 
-
-# author: Rob Blumberg
-# date: 2020-01-25
-#This script runs a pre-optimized linear regression model on training and test data.
-#The linear regression model is trained with the training data, and then makes predictions
-#on the test set. It then outputs as a .png plot in the desired directory showing predicted
-#vs actual results.
-img/results_plot.png: data/data_test.csv data/data_train.csv data/results_data/grid_search_results.csv
+# Output results figure from fitted linear model
+img/results_plot.png: data/data_test.csv data/data_train.csv data/results_data/grid_search_results.csv src/linear_model.py
 	python src/linear_model.py data/data_train.csv data/data_test.csv data/results_data/grid_search_results.csv img/results_plot.png
 
-
-
-all: img/age_dist.png img/correlation_plot.png img/country_dist.png img/heatmap_null.png img/weight_dist.png img/results_plot.png data/data_train.csv data/data_test.csv
+# Render final report
+doc/final_report.md doc/final_report.html: img/age_dist.png img/correlation_plot.png img/country_dist.png img/heatmap_null.png img/weight_dist.png img/numeric_placement.png img/results_plot.png data/results_data/grid_search_results.csv doc/final_report.Rmd
 	Rscript -e "rmarkdown::render('doc/final_report.Rmd')"
 
+# Clean up files
 clean:
 	rm -f data/raw_files/*.csv
 	rm -f data/*.csv
+	rm -f data/results_data/grid_search_results.csv
 	rm -f doc/final_report.html
 	rm -f doc/final_report.md
-	rm -f data/results_data/grid_search_results.csv
+	rm -f img/age_dist.png
+	rm -f img/correlation_plot.png
+	rm -f img/country_dist.png
+	rm -f img/heatmap_null.png
+	rm -f img/weight_dist.png
+	rm -f img/numeric_placement.png
+	rm -f img/results_plot.png
