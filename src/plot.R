@@ -20,6 +20,11 @@ opt <- docopt(doc) #parse the text
 
 main <- function(file_path, out_dir){
   
+  # test to check that csv is inputted 
+  if (substr(file_path, (nchar(file_path)+1)-3 ,nchar(file_path)) != "csv"){
+    stop("Must have an csv file in file_path")
+  }
+  
   # read in data
   data_train <- read.csv(file_path)
   
@@ -36,9 +41,6 @@ main <- function(file_path, out_dir){
     group_by(winodds) %>%
     summarize(place_mean= mean(plc, na.rm=TRUE))
   
-  #try({
-   # dir.create(out_dir)
-  #})
   
   #Plot line graph for Average numerical placement of horses by win odds
   p1 <- ggplot(win_odds) +
