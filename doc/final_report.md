@@ -1,7 +1,7 @@
 Hong Kong Horse Racing Predictions
 ================
 Derek Kruszewski, Yi Liu, Rob Blumberg, Carlina Kim </br>
-2020/01/24 (updated: 2020-02-05)
+2020/01/24 (updated: 2020-02-07)
 
 ## Introduction
 
@@ -53,8 +53,9 @@ difficult to incorporate into the master data set. The set contains
 ##### 1\. Let’s observe some features relationship with one another
 
 To understand the 36 different features relationship’s with one another,
-we observed a correlation plot on a selection of
-features.
+we observed a correlation plot on a selection of features. For a more
+in-depth description for feature, see
+Appendix
 
 <img src="../img/correlation_plot.png" style="display: block; margin: auto;" />
 
@@ -119,15 +120,15 @@ scoring method. The results of the grid search are shown below.
 
 | \# features selected | Mean R^2 val score | Fit time per fold (s) |
 | -------------------: | -----------------: | --------------------: |
-|                   30 |          0.8947641 |              11.43111 |
-|                   28 |          0.8945507 |              11.30220 |
-|                   25 |          0.8903972 |              12.50241 |
-|                   22 |          0.8883424 |              13.64597 |
-|                   20 |          0.8842115 |              12.84705 |
-|                   18 |          0.8836903 |              12.43192 |
-|                   15 |          0.8704722 |              12.00365 |
-|                   12 |          0.6479425 |              11.23815 |
-|                   10 |          0.5902303 |              11.24041 |
+|                   30 |              0.890 |                11.330 |
+|                   28 |              0.890 |                11.235 |
+|                   25 |              0.854 |                11.593 |
+|                   22 |              0.854 |                27.283 |
+|                   20 |              0.850 |                11.329 |
+|                   18 |              0.849 |                11.136 |
+|                   15 |              0.769 |                11.117 |
+|                   12 |              0.591 |                11.548 |
+|                   10 |              0.590 |                12.276 |
 
 In the table above, we can see that after roughly 25-28 features
 selected, the mean R^2 validation score no longer increased. Therefore,
@@ -155,7 +156,51 @@ features. Therefore, the next step of this project would be to
 investigate this by looking more closely at the weights of our linear
 model. Additionally, this analysis could be extended by using predicted
 finish times to estimate race finish orders, and compare these predicted
-finishing positions to the actual ones.
+finishing positions to the actual
+ones.
+
+## Appendix
+
+### Description of features
+
+| Feature         | Feature Description                                       |
+| :-------------- | :-------------------------------------------------------- |
+| row             | postition of horse at end of race (always numeric)        |
+| plc             | placement of horse (sometimes not numeric)                |
+| horseno         | index of horse given at race (the number that they wear)  |
+| horse           | horse name                                                |
+| jockey          | jockey name                                               |
+| trainer\_x      | trainer name                                              |
+| actualwt        | weight horse carried during race (jockey+gear)            |
+| declarewt       | actualwt + horse weight                                   |
+| draw            | starting position (stall)                                 |
+| lbw             | lengths behind winner                                     |
+| runningpos      | running positions during race                             |
+| finishtime      | time of race                                              |
+| winodds         | win odds of horse at start of race                        |
+| date            | date of race                                              |
+| raceno          | race number of the day                                    |
+| class           | quality of race (1 = championship)                        |
+| distance        | distance of race                                          |
+| going           | track condition                                           |
+| handicap        | weight added to horse based on rating                     |
+| course          | course type (ex gravel, tuff)                             |
+| stake           | money at stake                                            |
+| venue           | track                                                     |
+| dataset         | dataset run is from (barrier, results)                    |
+| gear            | gear on horse                                             |
+| comment         | comments druing race                                      |
+| result          | did horse finish                                          |
+| country         | horse country                                             |
+| colour          | horse color                                               |
+| sex             | horse sex                                                 |
+| owner           | horse owner                                               |
+| import\_type    | PP – previously raced, PPG – privately purchased griffins |
+| current\_rating | rating system for determining handicaps                   |
+| start\_rating   | previous rating                                           |
+| sire            | horse father                                              |
+| dam             | horse mother                                              |
+| age             | age of horse                                              |
 
 ## References
 
