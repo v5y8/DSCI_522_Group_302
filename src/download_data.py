@@ -17,6 +17,7 @@ Arguments:
 """
 
 import pandas as pd
+import os
 from docopt import docopt
 
 opt = docopt(__doc__)
@@ -76,7 +77,7 @@ def download_files(url):
     comments = pd.read_csv(f"{url}/comments.csv",
                            index_col=0)
     trackwork = pd.read_csv(f"{url}/trackwork.csv",
-                             index_col=0)
+                            index_col=0)
     barrier = pd.read_csv(f"{url}/barrier.csv",
                           index_col=0)
 
@@ -107,6 +108,27 @@ def write_data_to_file(dict_of_data, filepath):
         data.to_csv(f"{filepath}/{name}.csv")
     print("==========\nfinished writing files to disk\n")
 
+
+def test(url, file_path):
+    """
+    tests both of these things to make sure they're valid.
+    Parameters
+    ----------
+    url: the input url from the commandline
+    file_path: the filepath where the downloaded files are written
+
+    Returns
+    -------
+    Exception if URL is none or file path is not valid;
+     otherwise None.
+    """
+    if url is None:
+        raise Exception("URL must be non-empty!")
+    if file_path is None or not os.path.isdir(file_path):
+        raise Exception("the filepath input is invalid!")
+
+
+test(opt["<url>"], opt["<file_path>"])
 
 # script entry point
 if __name__ == '__main__':
