@@ -45,9 +45,9 @@ def main(file_path_in, file_path_out):
     -------
         None if executed successfully, otherwise raises Exception.
     """
-    #horse_info, results, comments, trackwork, barrier = import_files(file_path_in)
-    #complete_dataset = merge_results(horse_info, results, comments, trackwork, barrier)
-    #split_and_write_data(complete_dataset, file_path_out)
+    horse_info, results, comments, trackwork, barrier = import_files(file_path_in)
+    complete_dataset = merge_results(horse_info, results, comments, trackwork, barrier)
+    split_and_write_data(complete_dataset, file_path_out)
     print(f"successfully written data to {file_path_out}!\n")
 
 
