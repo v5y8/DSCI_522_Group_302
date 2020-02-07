@@ -264,6 +264,8 @@ def plot_results(training_data_file_path, test_data_file_path, grid_results_file
     ax.set_xlabel("Predicted finish time (s)", size=14)
     ax.set_ylabel("Actual finish time (s)", size=14)
     ax.set_title("Actual vs predicted finish times \non test set from optimized linear model", size = 15)
+    ax.spines['right'].set_visible(False) #HERE
+    ax.spines['top'].set_visible(False) #HERE
     plt.savefig(image_plot_file_path)
 
 # script entry point
