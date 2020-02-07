@@ -29,7 +29,7 @@ The barrier data set includes practice runs completed by horses. Since this info
 
 ##### 1. Let's observe some features relationship with one another
 
-To understand the 36 different features relationship's with one another, we observed a correlation plot on a selection of features.
+To understand the 36 different features relationship's with one another, we observed a correlation plot on a selection of features. For a more in-depth description for feature, see Appendix
 
 ```{r pearsons correlation, warning=FALSE, fig.align = "center", echo= FALSE}
 knitr::include_graphics("../img/correlation_plot.png")
@@ -71,6 +71,9 @@ results_grid_search <- read_csv("../data/results_data/grid_search_results.csv")[
                          rename("# features selected" = n_features_to_select,
                                 "Mean R^2 val score" = "mean_val_score (r2)", 
                                 "Fit time per fold (s)" = "fit time per fold (s)")
+
+results_grid_search <- results_grid_search %>% 
+  map_df(., function(x) round(x, 3))
 knitr::kable(results_grid_search)
 ```
 
@@ -84,5 +87,15 @@ knitr::include_graphics("../img/results_plot.png")
 Visually, it appears as though our linear regression model performs quite well compared to the theoretically perfect model represented by the red dashed line. The R^2 score in this case was 0.909. One thing to keep in mind, however, is that the order of finishes in a horse race can come down to fractions of a second, and so even a model capable of predicting finish times with an error of less than 1s can prove to be not very useful. 
 
 Another note to make about the results is that the prediction values seem to come in clusters. This suggests that the model may be segregating prediction values based on one feature (for instance, distance), and then fine tuning the predicted values based on other features. Therefore, the next step of this project would be to investigate this by looking more closely at the weights of our linear model. Additionally, this analysis could be extended by using predicted finish times to estimate race finish orders, and compare these predicted finishing positions to the actual ones. 
+
+## Appendix
+
+### Description of features
+
+```{r features description, warning=FALSE, message=FALSE}
+feature_desc_df <- read_csv("features-review.csv")[0:2]
+                        
+knitr::kable(feature_desc_df)
+```
 
 ## References
